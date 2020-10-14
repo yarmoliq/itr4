@@ -3,10 +3,31 @@
     ViewData["Title"] = "Listing";
 }
  
-<h1>Index</h1>
-<ul>
+<h1>Users table</h1>
+@* <ul>
     @foreach (var user in Model)
     {
         <li>@user.Email</li>
     }
-</ul>
+</ul> *@
+
+<table class="table">
+  <thead>
+    <tr>
+      @* <th scope="col">#</th> *@
+      <th scope="col">ID</th>
+      <th scope="col">E-mail</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+
+    @foreach(var user in Model)
+    {
+        <tr>
+        <td>@user.Id</td>
+        <td>@user.Email</td>
+        </tr>
+    }
+  </tbody>
+</table>

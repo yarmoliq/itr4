@@ -16,14 +16,6 @@ namespace main.Controllers
 {
     public class ListUsersController : Controller
     {
-        // private readonly ILogger<ListUsersController> _logger;
-
-        // public ListUsersController(ILogger<ListUsersController> logger)
-        // {
-        //     _logger = logger;
-        // }
-
-        // private readonly UserManager<IdentityUser> userManager;
         ApplicationDbContext _context;
 
         public ListUsersController(ApplicationDbContext context)
