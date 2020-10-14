@@ -2,7 +2,6 @@
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/appsettings.json
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/main.StaticWebAssets.xml
-/home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/app.db
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/main
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/main.deps.json
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/main.runtimeconfig.json
@@ -167,3 +166,4 @@
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/app.db

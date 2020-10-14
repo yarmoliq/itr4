@@ -28,21 +28,13 @@
 </table>
 
 <input type="button" value="button" onclick="PrintSelected()"/>
-@* <a href="PrintSelected()" class="btn btn-primary">Select</a> *@
-
-@* @Html.ActionLink("Send", "SomeAction", "ListUsers", new { reportID = 1337 }, null); *@
 
 <script>
-
   var PrintSelected = function() {
 
     var arrItems = [];
 
-    var answer = "";
-
     $("#usersTable tbody Input[type=checkbox]").each(function(index, val){
-
-      // debugger
 
       var checkId = $(val).attr("Id");
 
@@ -57,13 +49,16 @@
 
     })
 
-    if(arrItems.length != 0)
+    if(arrItems.length > 0)
     {
-      // debugger
-
-      var resultString = arrItems.toString();
-
-      $.post("ListUsers/DeleteUser", "048fd6e1-4d7c-4e44-9e46-c677bd873d80");
+      arrItems.forEach(userId => {
+        $.ajax({
+          url: 'DeleteUser',
+          data: { 'userId' : userId },
+          type: "post",
+          cache: false
+        });
+      })
     }
 
   }
