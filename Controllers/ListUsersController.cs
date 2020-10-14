@@ -12,6 +12,9 @@ using Microsoft.AspNetCore.Identity; // UserManager
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using main.Data; // for ApplicationDbContext
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
 namespace main.Controllers
 {
     public class ListUsersController : Controller
@@ -29,6 +32,30 @@ namespace main.Controllers
             var users = _context.Users;
 
             return View(users);
+        }
+
+        
+
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            try
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(e => e.Id == userId);
+
+                if (user == null)
+                {
+                    return Json(new { success = false, message = "Error while deleting." });
+                }
+
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "Delete Successfull!" });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Json(new { success = false, message = "Error while deleting." });
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

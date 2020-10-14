@@ -1,0 +1,20 @@
+@model IEnumerable<string>
+
+<h1>Selected users</h1>
+
+<table class="table" id="usersTable">
+  <thead>
+    <tr>
+      <th scope="col">Select</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+        @foreach(var user in Model)
+        {
+            <tr>
+            <td>@user</td>
+            </tr>
+        }
+  </tbody>
+</table>
