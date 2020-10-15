@@ -93,7 +93,6 @@
 /home/yarmoliq/dev/itr4/main/obj/Debug/netcoreapp3.1/main.pdb
 /home/yarmoliq/dev/itr4/main/obj/Debug/netcoreapp3.1/main.genruntimeconfig.cache
 /home/yarmoliq/dev/itr4/main/obj/Debug/netcoreapp3.1/Razor/Views/ListUsers/List.cshtml.g.cs
-/home/yarmoliq/dev/itr4/main/obj/Debug/netcoreapp3.1/Razor/Views/ListUsers/SomeAction.cshtml.g.cs
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Razor.Language.dll
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/Microsoft.CodeAnalysis.dll
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.dll

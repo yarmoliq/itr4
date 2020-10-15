@@ -2,13 +2,21 @@
 @{
     ViewData["Title"] = "Listing";
 }
- 
+
 <h1>Users table</h1>
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="btn-group" role="group">
+  <button class="btn btn-default btn-outline-secondary" onclick=""><i class="fa fa-unlock"></i></button>
+  <button class="btn btn-default btn-outline-secondary" onclick=""><i class="fa fa-lock"></i></button>
+  <button class="btn btn-default btn-outline-secondary" onclick="PrintSelected()"><i class="fa fa-trash"></i></button>
+</div>
 
 <table class="table" id="usersTable">
   <thead>
     <tr>
-      <th scope="col">Select</th>
+        <th><input type="checkbox" id="checkSelectAll"></th>
       <th scope="col">ID</th>
       <th scope="col">E-mail</th>
     </tr>
@@ -26,8 +34,6 @@
     }
   </tbody>
 </table>
-
-<input type="button" value="button" onclick="PrintSelected()"/>
 
 <script>
   var PrintSelected = function() {
@@ -56,11 +62,23 @@
           url: 'DeleteUser',
           data: { 'userId' : userId },
           type: "post",
-          cache: false
+          cache: false,
+          success: function () {
+                  location.reload();
+                }
         });
       })
     }
-
   }
+</script>
 
+<script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$("#checkSelectAll").click(function () {
+    if ($(this).is(':checked')) {
+        $('#usersTable input:checkbox').prop('checked', true);
+    } else {
+        $('#usersTable input:checkbox').prop('checked', false);
+    }
+});
 </script>

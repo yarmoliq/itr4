@@ -34,26 +34,16 @@ namespace main.Controllers
             return View(users);
         }
 
-        public IActionResult SomeAction()
-        {
-            string[] strs = {"1","2","3"};
-
-            return View(strs);
-        }
-
         [HttpPost("ListUsers/DeleteUser")]
         public async Task<IActionResult> DeleteUser(string userId)
         {
-            string mes = "Received id = " + userId;
-
             try
             {
-
                 var user = await _context.Users.FirstOrDefaultAsync(e => e.Id == userId);
 
                 if (user == null)
                 {
-                    return Json(new { success = false, message = mes });
+                    return Json(new { success = false, message = "Error while deleting user with id=" + userId });
                 }
 
                 _context.Users.Remove(user);
