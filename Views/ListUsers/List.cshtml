@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="btn-group" role="group">
-  <button class="btn btn-default btn-outline-secondary" onclick=""><i class="fa fa-unlock"></i></button>
+  <button class="btn btn-default btn-outline-secondary" onclick="UnblockSelectedUsers()"><i class="fa fa-unlock"></i></button>
   <button class="btn btn-default btn-outline-secondary" onclick="BlockSelectedUsers()"><i class="fa fa-lock"></i></button>
   <button class="btn btn-default btn-outline-secondary" onclick="DeleteSelectedUsers()"><i class="fa fa-trash"></i></button>
 </div>
@@ -20,7 +20,8 @@
       <th scope="col">ID</th>
       <th scope="col">Name</th>
       <th scope="col">E-mail</th>
-      @* <th scope="col">Blocked</th> *@
+      <th scope="col">Joined</th>
+      <th scope="col">Last login</th>
       <th scope="col">Blocked</th>
     </tr>
   </thead>
@@ -34,7 +35,8 @@
         <td>@user.Id</td>
         <td>@user.UserName</td>
         <td>@user.Email</td>
-        @* <td>@user.blocked</td> *@
+        <td>@user.DateJoined</td>
+        <td>@user.LastUpdated</td>
         @if (user.LockoutEnd == null)
         {
           <td>No</td>
@@ -43,7 +45,6 @@
         {
           <td>Yes</td>
         }
-        @* <td>@user.LockoutEnd</td> *@
         </tr>
     }
   </tbody>
@@ -72,7 +73,7 @@
     if(arrItems.length > 0)
     {
         $.ajax({
-          url: 'DeleteUsers',
+          url: 'ListUsers/DeleteUsers',
           data: { 'userIds' : arrItems },
           type: "post",
           cache: false,
@@ -107,7 +108,42 @@
     if(arrItems.length > 0)
     {
         $.ajax({
-          url: 'BlockUsers',
+          url: 'ListUsers/BlockUsers',
+          data: { 'userIds' : arrItems },
+          type: "post",
+          cache: false,
+          success: function () {
+                  location.reload();
+                }
+        });
+    }
+  }
+</script>
+
+<script>
+  var UnblockSelectedUsers = function() {
+
+    var arrItems = [];
+
+    $("#usersTable tbody Input[type=checkbox]").each(function(index, val){
+
+      var checkId = $(val).attr("Id");
+
+      var arr = checkId.split('_');
+
+      var id = arr[1];
+
+      if($("#"+checkId).is(":checked", true))
+      {
+        arrItems.push(id);
+      }
+
+    })
+
+    if(arrItems.length > 0)
+    {
+        $.ajax({
+          url: 'ListUsers/UnblockUsers',
           data: { 'userIds' : arrItems },
           type: "post",
           cache: false,

@@ -2,17 +2,15 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using main.Data;
 
-namespace main.Data.Migrations
+namespace main.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201015164914_update2")]
-    partial class update2
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,9 +73,6 @@ namespace main.Data.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT")
                         .HasMaxLength(256);
-
-                    b.Property<bool>("blocked")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

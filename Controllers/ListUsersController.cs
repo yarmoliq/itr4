@@ -81,7 +81,7 @@ namespace main.Controllers
                     return true;
                 }
 
-                // user.blocked = true;
+                user.LockoutEnabled = true;
                 user.LockoutEnd = DateTime.Now.AddHours(365 * 24);
                 _context.Users.Update(user);
                 _context.SaveChanges();
@@ -104,6 +104,45 @@ namespace main.Controllers
             foreach (var userId in userIds)
             {
                 BlockUser(userId);
+            }
+
+            return Json(new { success = true, message = "Yes." });
+        }
+
+        private async Task<bool> UnblockUser(string userId)
+        {
+            try
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(e => e.Id == userId);
+
+                if (user == null)
+                {
+                    return true;
+                }
+
+                user.LockoutEnabled = false;
+                user.LockoutEnd = null;
+                _context.Users.Update(user);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [HttpPost("ListUsers/UnblockUsers")]
+        public async Task<IActionResult> UnblockUsers(string[] userIds)
+        {
+            // stoilo bi sdelat eto normalno
+            // chtobi kajdii raz ne delat db.savechanges
+            // no y menya net vremeni :)
+            foreach (var userId in userIds)
+            {
+                UnblockUser(userId);
             }
 
             return Json(new { success = true, message = "Yes." });

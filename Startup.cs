@@ -35,16 +35,16 @@ namespace main
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
                 
-            // Configure Identity
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Password settings
-                options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 1;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = false;
-            });
+            // // Configure Identity
+            // services.Configure<IdentityOptions>(options =>
+            // {
+            //     // Password settings
+            //     options.Password.RequireDigit = false;
+            //     options.Password.RequiredLength = 1;
+            //     options.Password.RequireNonAlphanumeric = false;
+            //     options.Password.RequireUppercase = false;
+            //     options.Password.RequireLowercase = false;
+            // });
 
             services.AddControllersWithViews();
             services.AddRazorPages();
