@@ -10,7 +10,7 @@
 <div class="btn-group" role="group">
   <button class="btn btn-default btn-outline-secondary" onclick=""><i class="fa fa-unlock"></i></button>
   <button class="btn btn-default btn-outline-secondary" onclick=""><i class="fa fa-lock"></i></button>
-  <button class="btn btn-default btn-outline-secondary" onclick="PrintSelected()"><i class="fa fa-trash"></i></button>
+  <button class="btn btn-default btn-outline-secondary" onclick="DeleteSelectedUsers()"><i class="fa fa-trash"></i></button>
 </div>
 
 <table class="table" id="usersTable">
@@ -36,7 +36,7 @@
 </table>
 
 <script>
-  var PrintSelected = function() {
+  var DeleteSelectedUsers = function() {
 
     var arrItems = [];
 
@@ -57,17 +57,17 @@
 
     if(arrItems.length > 0)
     {
-      arrItems.forEach(userId => {
+      //arrItems.forEach(userId => {
         $.ajax({
-          url: 'DeleteUser',
-          data: { 'userId' : userId },
+          url: 'DeleteUsers',
+          data: { 'userIds' : arrItems },
           type: "post",
           cache: false,
           success: function () {
                   location.reload();
                 }
         });
-      })
+      //})
     }
   }
 </script>

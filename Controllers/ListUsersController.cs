@@ -34,8 +34,7 @@ namespace main.Controllers
             return View(users);
         }
 
-        [HttpPost("ListUsers/DeleteUser")]
-        public async Task<IActionResult> DeleteUser(string userId)
+        private async Task<bool> DeleteUser(string userId)
         {
             try
             {
@@ -43,18 +42,32 @@ namespace main.Controllers
 
                 if (user == null)
                 {
-                    return Json(new { success = false, message = "Error while deleting user with id=" + userId });
+                    return true;
                 }
 
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
-                return Json(new { success = true, message = "Delete Successfull!" });
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return Json(new { success = false, message = "Error while deleting." });
+                return false;
             }
+        }
+
+        [HttpPost("ListUsers/DeleteUsers")]
+        public async Task<IActionResult> DeleteUsers(string[] userIds)
+        {
+            // stoilo bi sdelat eto normalno
+            // chtobi kajdii raz ne delat db.savechanges
+            // no y menya net vremeni :)
+            foreach (var userId in userIds)
+            {
+                DeleteUser(userId);
+            }
+
+            return Json(new { success = true, message = "Yes." });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
