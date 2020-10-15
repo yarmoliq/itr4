@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Identity.Models
 {
-    public class AppUser : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
+        public DateTime DateJoined { get; set; }
+        public DateTime LastUpdated { get; set; }
     }
 }

@@ -70,6 +70,45 @@ namespace main.Controllers
             return Json(new { success = true, message = "Yes." });
         }
 
+        private async Task<bool> BlockUser(string userId)
+        {
+            try
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(e => e.Id == userId);
+
+                if (user == null)
+                {
+                    return true;
+                }
+
+                // user.blocked = true;
+                user.LockoutEnd = DateTime.Now.AddHours(365 * 24);
+                _context.Users.Update(user);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        [HttpPost("ListUsers/BlockUsers")]
+        public async Task<IActionResult> BlockUsers(string[] userIds)
+        {
+            // stoilo bi sdelat eto normalno
+            // chtobi kajdii raz ne delat db.savechanges
+            // no y menya net vremeni :)
+            foreach (var userId in userIds)
+            {
+                BlockUser(userId);
+            }
+
+            return Json(new { success = true, message = "Yes." });
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
