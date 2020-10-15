@@ -14,16 +14,21 @@ using main.Data; // for ApplicationDbContext
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Http; // httpcontext
 
 namespace main.Controllers
 {
     public class ListUsersController : Controller
     {
         ApplicationDbContext _context;
+        // IHttpContextAccessor h;
 
-        public ListUsersController(ApplicationDbContext context)
+        public ListUsersController(ApplicationDbContext context
+        // , IHttpContextAccessor hh
+        )
         {
             _context = context;
+            // h = hh;
         }
 
         [Authorize]
@@ -147,6 +152,11 @@ namespace main.Controllers
 
             return Json(new { success = true, message = "Yes." });
         }
+
+        // public IActionResult YES()
+        // {
+        //     return View(h.HttpContext.User.Identity.Name);
+        // }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

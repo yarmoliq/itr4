@@ -9,14 +9,14 @@ using main.Data;
 namespace main.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201015171721_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201015222538_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8");
+                .HasAnnotation("ProductVersion", "3.1.9");
 
             modelBuilder.Entity("Identity.Models.ApplicationUser", b =>
                 {
@@ -47,6 +47,9 @@ namespace main.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")

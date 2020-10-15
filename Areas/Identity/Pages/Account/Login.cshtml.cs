@@ -13,23 +13,34 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 using Identity.Models; // ApplicationUser
+using main.Data; // for ApplicationDbContext
+using System.Security.Claims; // see GetUserById
+using Microsoft.AspNetCore.Http;
 
 namespace main.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
+        ApplicationDbContext _context;
+
+        IHttpContextAccessor h;
+
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            ApplicationDbContext context,
+            IHttpContextAccessor hh)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
+            h = hh;
         }
 
         [BindProperty]
@@ -86,7 +97,9 @@ namespace main.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
 
-                    
+                    var user = await _userManager.FindByNameAsync(Input.Email);
+                    user.LastUpdated = DateTime.UtcNow;
+                    var res = await _userManager.UpdateAsync(user);
 
                     return LocalRedirect(returnUrl);
                 }

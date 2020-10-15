@@ -164,7 +164,6 @@
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
-/home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/app.db
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/Microsoft.Data.SqlClient.dll
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.SqlServer.dll
 /home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/Microsoft.Identity.Client.dll
@@ -191,3 +190,4 @@
 /home/yarmoliq/dev/itr4/main/obj/Debug/netcoreapp3.1/Razor/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml.g.cs
 /home/yarmoliq/dev/itr4/main/obj/Debug/netcoreapp3.1/Razor/Areas/Identity/Pages/_ViewImports.cshtml.g.cs
 /home/yarmoliq/dev/itr4/main/obj/Debug/netcoreapp3.1/Razor/Areas/Identity/Pages/_ViewStart.cshtml.g.cs
+/home/yarmoliq/dev/itr4/main/bin/Debug/netcoreapp3.1/app.db
