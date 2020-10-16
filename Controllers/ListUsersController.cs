@@ -105,7 +105,7 @@ namespace main.Controllers
                 if (userId == currentUserId)
                 {
                     await _signInManager.SignOutAsync();
-                }
+                } 
 
                 user.LockoutEnabled = true;
                 user.LockoutEnd = DateTime.Now.AddHours(365 * 24);
