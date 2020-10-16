@@ -15,20 +15,27 @@ using main.Data; // for ApplicationDbContext
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Http; // httpcontext
+using Identity.Models; // ApplicationUser
+using System.Security.Claims;
 
 namespace main.Controllers
 {
     public class ListUsersController : Controller
     {
         ApplicationDbContext _context;
-        // IHttpContextAccessor h;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public ListUsersController(ApplicationDbContext context
-        // , IHttpContextAccessor hh
+        IHttpContextAccessor _h;
+
+
+        public ListUsersController(ApplicationDbContext context,
+            SignInManager<ApplicationUser> signInManager,
+            IHttpContextAccessor h
         )
         {
             _context = context;
-            // h = hh;
+            _signInManager = signInManager;
+            _h = h;
         }
 
         [Authorize]
@@ -48,6 +55,13 @@ namespace main.Controllers
                 if (user == null)
                 {
                     return true;
+                }
+
+                var currentUserId = _h.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                if(userId == currentUserId)
+                {
+                    await _signInManager.SignOutAsync();
                 }
 
                 _context.Users.Remove(user);
@@ -84,6 +98,13 @@ namespace main.Controllers
                 if (user == null)
                 {
                     return true;
+                }
+
+                var currentUserId = _h.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                if (userId == currentUserId)
+                {
+                    await _signInManager.SignOutAsync();
                 }
 
                 user.LockoutEnabled = true;
