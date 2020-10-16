@@ -14,6 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
+
 namespace main
 {
     public class Startup
@@ -46,6 +49,11 @@ namespace main
                 options.Password.RequireLowercase = false;
             });
 
+            // services.Configure<ForwardedHeadersOptions>(options =>
+            // {
+            //     options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+            // });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
                  services.AddHttpContextAccessor();
@@ -70,6 +78,11 @@ namespace main
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // app.UseForwardedHeaders(new ForwardedHeadersOptions
+            // {
+            //     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            // });
 
             app.UseAuthentication();
             app.UseAuthorization();
